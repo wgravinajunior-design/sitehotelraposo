@@ -15,5 +15,9 @@ echo "Instalando dependências..."
 flutter pub get
 
 # Compilar o projeto para a Web
-echo "Compilando para web..."
-flutter build web --release
+echo "Compilando para web com API: $API_BASE_URL"
+if [ -z "$API_BASE_URL" ]; then
+  flutter build web --release
+else
+  flutter build web --release --dart-define=API_BASE_URL="$API_BASE_URL"
+fi
